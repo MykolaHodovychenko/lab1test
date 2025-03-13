@@ -1,5 +1,5 @@
-# Використання офіційного Maven-образу для зборки
-FROM maven:3.8.6-openjdk-17 AS build
+# Використання офіційного образу Maven для білду
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 # Встановлюємо робочу директорію
 WORKDIR /app
@@ -10,8 +10,8 @@ COPY . .
 # Будуємо Spring Boot-додаток
 RUN mvn clean package -DskipTests
 
-# Використання OpenJDK для запуску фінального контейнера
-FROM openjdk:17-jdk-slim
+# Використання легкого OpenJDK для фінального контейнера
+FROM eclipse-temurin:17-jdk-jammy
 
 # Встановлюємо робочу директорію
 WORKDIR /app
